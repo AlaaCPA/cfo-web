@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Team — CFO Advisory & Accountancy</title>
+  <link rel="stylesheet" href="temp/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/favicon.png">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header"><div class="container header-row">
+    <a class="brand" href="home.html"><img src="assets/logo-large.png" class="logo" alt=""></a>
+    <nav class="nav"><a href="home.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="why-cfo.html">Why CFO</a><a href="team.html">Team</a><a href="contact.html">Contact</a></nav>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button></div></header>
+  <aside class="drawer" id="drawer"><nav class="drawer-nav">
+    <a href="home.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="why-cfo.html">Why CFO</a><a href="team.html">Team</a><a href="contact.html">Contact</a>
+  </nav></aside>
+
+  <!-- Cover -->
+   <!-- Cover (Team) — background slideshow + bottom text -->
+    <!-- Curved Filmstrip: Team photos queue -->
+    <!-- 3D Coverflow: Team at work -->
+  <section class="coverflow" id="teamFlow" aria-roledescription="carousel" aria-label="Team at work">
+    <button class="cf-nav prev" aria-label="Previous photos">❮</button>
+
+    <ul class="cf-track" id="cfTrack">
+        <li class="cf-card"><img src="assets/team/DSC07770-Edit copy.jpeg" alt=""></li>
+        <li class="cf-card"><img src="assets/team/DSC07798-Edit copy.jpeg" alt=""></li>
+        <li class="cf-card"><img src="assets/team/DSC07801-Edit copy.jpeg" alt=""></li>
+        <li class="cf-card"><img src="assets/team/DSC07824-Edit copy.jpeg" alt=""></li>
+        <li class="cf-card"><img src="assets/team/DSC07826-Edit copy.jpeg" alt=""></li>
+        <li class="cf-card"><img src="assets/team/DSC07940-Edit copy.jpeg" alt=""></li>
+        <li class="cf-card"><img src="assets/team/DSC07967-Edit copy.jpeg" alt=""></li>
+        <li class="cf-card"><img src="assets/team/DSC08002-Edit copy.jpeg" alt=""></li>
+    </ul>
+
+    <button class="cf-nav next" aria-label="Next photos">❯</button>
+    <div class="cf-dots" id="cfDots" aria-label="Slide indicators"></div>
+  </section>
+
+  <section class="team">
+    <div class="content container">
+        <h1 class="headline type"><span>Our Team</span></h1>
+        <p class="subhead">Experienced CFOs &amp; finance professionals—hands-on and tech-forward.</p>
+    </div>
+    <div class="container">
+      <div class="team-grid">
+        <article class="tcard reveal card card--dark tilt">
+          <div class="avatar" data-initials="AM"></div>
+          <h3>Ahmed Moussa</h3><p class="role">Managing Director</p>
+          <button class="more" data-bio="bio-am">Read bio</button>
+        </article>
+        <article class="tcard reveal card card--dark tilt">
+          <div class="avatar" data-initials="HA"></div>
+          <h3>Hawraa Ali</h3><p class="role">Managing Director</p>
+          <button class="more" data-bio="bio-ha">Read bio</button>
+        </article>
+        <article class="tcard reveal card card--dark tilt">
+          <div class="avatar" data-initials="SS"></div>
+          <h3>Sana Shaikh</h3><p class="role">Senior Accountant</p>
+          <button class="more" data-bio="bio-ss">Read bio</button>
+        </article>
+        <article class="tcard reveal card card--dark tilt">
+          <div class="avatar" data-initials="MS"></div>
+          <h3>Mohamed Suhail</h3><p class="role">Senior Accountant</p>
+          <button class="more" data-bio="bio-ms">Read bio</button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Structured bios -->
+  <template id="bio-am">
+    <article class="bio">
+        <img class="bio-photo" src="assets/team/ahmed.jpg" alt="Ahmed Moussa">
+        <div class="bio-main">
+        <h3>Ahmed Moussa <span class="role">Managing Director</span></h3>
+        <ul class="badges">
+            <li>Executive MBA — ESADE</li>
+            <li>CPA (California)</li>
+            <li>IFRS Certification — AICPA</li>
+        </ul>
+        <p>Seasoned CFO (20+ years) across banking & multi-sector conglomerates. Leads scale-ups, board reporting, treasury, cash management, IFRS/US GAAP, and capital raising.</p>
+        <ul class="bullets">
+            <li>Board advisory and enterprise scale-up</li>
+            <li>Monthly close acceleration & KPI reporting</li>
+            <li>Debt/equity sourcing & treasury operations</li>
+        </ul>
+        <p class="contact"><a class="btn btn-green" href="mailto:services@cfoconsulting.cpa">Email Ahmed</a></p>
+        </div>
+    </article>
+  </template>
+
+  <template id="bio-ha">
+    <article class="bio">
+        <img class="bio-photo" src="assets/team/hawraa.jpg" alt="Hawraa Ali">
+        <div class="bio-main">
+        <h3>Hawraa Ali <span class="role">Managing Director</span></h3>
+        <ul class="badges">
+            <li>First-Class Honours — Ulster Univ.</li>
+        </ul>
+        <p>Leads client growth & delivery for SME CFO services, ensuring structured finance ops, accurate reporting, and sustainable performance.</p>
+        <ul class="bullets">
+            <li>Operating model & process design</li>
+            <li>Client relationship & delivery excellence</li>
+            <li>Reporting quality & governance</li>
+        </ul>
+        <p class="contact"><a class="btn btn-green" href="mailto:services@cfoconsulting.cpa">Email Hawraa</a></p>
+        </div>
+    </article>
+  </template>
+
+  <template id="bio-ss">
+    <article class="bio">
+        <img class="bio-photo" src="assets/team/sana.jpg" alt="Sana Shaikh">
+        <div class="bio-main">
+        <h3>Sana Shaikh <span class="role">Senior Accountant</span></h3>
+        <ul class="badges"><li>BBA (Accounting) — UDST</li></ul>
+        <p>Prepares monthly financials and analyses that guide decisions. Hands-on with modern accounting stacks; brings a CFO perspective to daily operations.</p>
+        <ul class="bullets">
+            <li>Management reporting & analysis</li>
+            <li>Account reconciliations & month-end</li>
+            <li>Tooling & workflow optimization</li>
+        </ul>
+        <p class="contact"><a class="btn btn-green" href="mailto:services@cfoconsulting.cpa">Email Sana</a></p>
+        </div>
+    </article>
+  </template>
+
+  <template id="bio-ms">
+    <article class="bio">
+        <img class="bio-photo" src="assets/team/suhail.jpg" alt="Mohamed Suhail">
+        <div class="bio-main">
+        <h3>Mohamed Suhail <span class="role">Senior Accountant</span></h3>
+        <ul class="badges"><li>MBA</li><li>pursuing CMA &amp; FMAA</li></ul>
+        <p>Focuses on financial reporting and performance insights. Passionate about turning numbers into action and improving outcomes.</p>
+        <ul class="bullets">
+            <li>Variance analysis & dashboards</li>
+            <li>Forecasting & scenario modeling</li>
+            <li>Continuous improvement</li>
+        </ul>
+        <p class="contact"><a class="btn btn-green" href="mailto:services@cfoconsulting.cpa">Email Mohamed</a></p>
+        </div>
+    </article>
+  </template>
+
+    <!-- Modal (add next/prev inside the card) -->
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Team bio">
+    <div class="modal-card">
+        <button class="modal-close" aria-label="Close">✕</button>
+        <button class="modal-prev" aria-label="Previous">‹</button>
+        <button class="modal-next" aria-label="Next">›</button>
+        <div class="modal-body"></div>
+    </div>
+  </div>
+
+
+  <!-- Hidden bios 
+   
+  <template id="bio-am"><p>Ahmed Moussa is a seasoned Chief Financial Officer with over 20 years of corporate leadership, enterprise scale-up, and Board Advisory experience across market-leading banking firms and multi-sector conglomerates operating globally from a Middle East base. … He holds an Executive MBA (ESADE), CPA (California), and IFRS Certification (AICPA).</p></template>
+  <template id="bio-ha"><p>Hawraa Ali (First-Class Honors, Ulster University) has spent the last three years delivering high-quality CFO services to SMEs across Qatar, strengthening client relationships and ensuring structured operations and accurate reporting.</p></template>
+  <template id="bio-ss"><p>Sana manages client accounts and prepares monthly financial reports based on thorough analysis, helping clients make informed decisions. With advanced software experience, she brings a CFO perspective to every engagement.</p></template>
+  <template id="bio-ms"><p>Mohamed focuses on financial reporting & analysis; MBA holder pursuing CMA & FMAA. He turns numbers into actionable insights and is passionate about continuous growth.</p></template>
+-->
+  <!-- Modal -->
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Team bio">
+    <div class="modal-card">
+      <button class="modal-close">✕</button>
+      <div class="modal-body"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer"><div class="container footer-grid">
+    <div><img src="assets/logo-large.png" class="footer-logo" alt=""><small>© <span id="year"></span> CFO Advisory & Accountancy</small></div>
+    <ul class="footer-links"><li><a href="services.html">Services</a></li><li><a href="why-cfo.html">Why CFO</a></li><li><a href="contact.html">Contact</a></li></ul>
+    <div class="socials"><a href="#">in</a><a href="#">f</a><a href="#">ig</a></div>
+  </div></footer>
+  <script src="temp/main.js"></script>
+</body>
+</html>

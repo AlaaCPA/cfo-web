@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Home — CFO Advisory & Accountancy</title>
+  <link rel="stylesheet" href="temp/styles.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/favicon.png">
+</head>
+<body>
+  <div id="transition" class="transition" aria-hidden="true"></div>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="home.html"><img src="assets/logo-large.avif" class="logo" alt="CFO Advisory & Accountancy"></a>
+      <nav class="nav">
+        <a href="home.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="why-cfo.html">Why CFO</a>
+        <a href="team.html">Team</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <aside class="drawer" id="drawer">
+    <nav class="drawer-nav">
+      <a href="home.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="why-cfo.html">Why CFO</a>
+      <a href="team.html">Team</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </aside>
+  <!-- HERO (bottom copy + sound toggle)   poster="assets/hero.jpg" -->
+  <section class="hero hero--bottom">
+    <canvas id="heroFx" class="hero-fx" aria-hidden="true"></canvas>
+
+    <video class="hero-video" autoplay playsinline loop muted> 
+        <source src="assets/hero.webm" type="video/webm">
+        <source src="assets/hel.mp4" type="video/mp4">
+    </video>
+
+    <div class="overlay"></div>
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+
+    <!-- sound toggle -->
+    <!--<button class="sound-toggle" id="soundToggle" aria-label="Unmute video" title="Sound">🔈</button>-->
+
+    <!-- bottom-anchored content -->
+    <!-- <div class="content container">
+        <h1 class="headline"><span>CFO advisory and accountancy</span></h1>
+        <p class="subhead">
+        We help SMEs gain control over their financial operations with expert guidance, accurate
+        reporting, and automated workflows powered by smart tech and ERP systems.
+        </p>
+        <div class="cta-row">
+        <a class="btn btn-green magnetic" href="contact.html">Contact Us</a>
+        </div>
+        <div class="scroll" aria-hidden="true">Scroll</div>
+    </div> -->
+
+    <button id="soundToggle" class="sound-toggle" aria-label="Toggle sound">🔈</button>
+
+    <div class="content container">
+        <!-- add 'type' to headline; keep the text inside <span> -->
+        <h1 class="headline type"><span>CFO advisory and accountancy</span></h1>
+
+        <!-- subhead simply fades in; 'reveal' uses your IO observer -->
+        <p class="subhead reveal">
+        We help SMEs gain control over their financial operations with expert guidance,
+        accurate reporting, and automated workflows powered by smart tech and ERP systems.
+        </p>
+
+        <div class="cta-row">
+        <a class="btn btn-green magnetic" href="contact.html">Contact Us</a>
+        </div>
+
+        <div class="scroll" aria-hidden="true">Scroll</div>
+    </div>
+  </section>
+
+
+  <!-- 
+  <section class="hero">
+    <canvas id="heroFx" class="hero-fx" aria-hidden="true"></canvas>
+    <video autoplay muted loop playsinline poster="assets/hero.jpg">
+      <source src="assets/hero.webm" type="video/webm">
+      <source src="assets/hel.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+    <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+
+    <div class="content container">
+      <h1 class="headline"><span>CFO advisory and accountancy</span></h1>
+      <p class="subhead">We help SMEs gain control over their financial operations with expert guidance, accurate reporting, and automated workflows powered by smart tech and ERP systems.</p>
+      <a class="btn btn-green magnetic" href="contact.html">Contact Us</a>
+      <div class="scroll" aria-hidden="true">Scroll</div>
+    </div>
+  </section> -->
+  <!-- HERO (bottom-aligned copy) 
+  <section class="hero hero--bottom">
+    <canvas id="heroFx" class="hero-fx" aria-hidden="true"></canvas>
+
+    <video class="hero-video" autoplay muted loop playsinline poster="assets/hero.jpg">
+        <source src="assets/hero.webm" type="video/webm">
+        <source src="assets/hel.mp4" type="video/mp4">
+    </video>
+
+    <div class="overlay"></div>
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+
+    <div class="content container">
+        <h1 class="headline"><span>CFO advisory and accountancy</span></h1>
+        <p class="subhead">
+        We help SMEs gain control over their financial operations with expert guidance, accurate reporting,
+        and automated workflows powered by smart tech and ERP systems.
+        </p>
+        <div class="cta-row">
+        <a class="btn btn-green magnetic" href="contact.html">Contact Us</a>
+        </div>
+        <div class="scroll" aria-hidden="true">Scroll</div>
+    </div>
+  </section> -->
+
+
+  <!-- What We Do -->
+  <section class="what">
+    <div class="container">
+      <h2 class="section-title">What We Do</h2>
+      <div class="grid-5">
+        <article class="card card--dark reveal tilt">
+          <div class="ic bounce"><svg viewBox="0 0 24 24"><path d="M3 10h18v8a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-8z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v3H9V7z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 13h18" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+          <h3>Virtual CFO Services</h3><p>Leadership & discipline without full-time cost.</p>
+        </article>
+        <article class="card card--dark reveal tilt">
+          <div class="ic bounce"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-6M2 20h20" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+          <h3>Financial Reporting & Analysis</h3><p>Close faster. Report accurately. See drivers.</p>
+        </article>
+        <article class="card card--dark reveal tilt">
+          <div class="ic bounce"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="7" width="18" height="10" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+          <h3>Cash Flow Forecasting</h3><p>Plan growth with visibility.</p>
+        </article>
+        <article class="card card--dark reveal tilt">
+          <div class="ic bounce"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.08a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.08a1.65 1.65 0 0 0 1.51-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <h3>Automation & ERP Setup</h3><p>Replace manual work with connected workflows.</p>
+        </article>
+        <article class="card card--dark reveal tilt">
+          <div class="ic bounce"><svg viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 5-3.5 9-7 10-3.5-1-7-5-7-10V7l7-4z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+          <h3>Internal Controls & Compliance</h3><p>Reduce risk. Satisfy auditors.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="team-strip container reveal" aria-label="Meet the team">
+    <h2 class="section-title">Our Team</h2>
+    <div class="strip">
+        <!-- Duplicate the five items twice to create a seamless loop -->
+        <button class="face" data-bio="bio-ahmed">
+        <img src="assets/team/ahmed.jpg" alt="Ahmed Moussa">
+        <span>Ahmed Moussa</span>
+        </button>
+        <button class="face" data-bio="bio-hawraa">
+        <img src="assets/team/hawraa.jpg" alt="Hawraa Ali">
+        <span>Hawraa Ali</span>
+        </button>
+        <button class="face" data-bio="bio-sana">
+        <img src="assets/team/sana.jpg" alt="Sana Shaikh">
+        <span>Sana Shaikh</span>
+        </button>
+        <button class="face" data-bio="bio-suhail">
+        <img src="assets/team/suhail.jpg" alt="Mohamed Suhail">
+        <span>Mohamed Suhail</span>
+        </button>
+
+        <!-- repeat to make it continuous -->
+        <button class="face" data-bio="bio-ahmed"><img src="assets/team/ahmed.jpg" alt=""><span>Ahmed Moussa</span></button>
+        <button class="face" data-bio="bio-hawraa"><img src="assets/team/hawraa.jpg" alt=""><span>Hawraa Ali</span></button>
+        <button class="face" data-bio="bio-sana"><img src="assets/team/sana.jpg" alt=""><span>Sana Shaikh</span></button>
+        <button class="face" data-bio="bio-suhail"><img src="assets/team/suhail.jpg" alt=""><span>Mohamed Suhail</span></button>
+    </div>
+  </section>
+
+    <!-- hide bios on the page (modal uses these) -->
+  <div id="bio-ahmed" hidden>
+    <h3>Ahmed Moussa — Managing Director</h3>
+    <p>Seasoned CFO (20+ yrs) across banking & multi-sector conglomerates. Expertise: IFRS/US GAAP, treasury, cash mgmt, MIS, board reporting, capital raising, restructuring and scale-ups.</p>
+    <p><a href="mailto:services@cfoconsulting.cpa">services@cfoconsulting.cpa</a></p>
+    </div>
+    <div id="bio-hawraa" hidden>
+    <h3>Hawraa Ali — Managing Director</h3>
+    <p>First-Class Honours, Business Studies (Ulster). Leads client growth & delivery for SME CFO services, ensuring structured finance ops & accurate reporting.</p>
+    <p><a href="mailto:services@cfoconsulting.cpa">services@cfoconsulting.cpa</a></p>
+    </div>
+    <div id="bio-sana" hidden>
+    <h3>Sana Shaikh — Senior Accountant</h3>
+    <p>BBA (Accounting), UDST. Manages client accounts, produces monthly financials with analysis to support decisions; hands-on with modern accounting stacks.</p>
+    <p><a href="mailto:services@cfoconsulting.cpa">services@cfoconsulting.cpa</a></p>
+    </div>
+    <div id="bio-suhail" hidden>
+    <h3>Mohamed Suhail — Senior Accountant</h3>
+    <p>MBA; pursuing CMA/FMAA. Focus: financial data analysis and accurate reporting that drives action. Passionate about turning numbers into insights.</p>
+    <p><a href="mailto:services@cfoconsulting.cpa">services@cfoconsulting.cpa</a></p>
+  </div>
+
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <h2>Ready to gain control?</h2>
+      <p>Tell us where you want to go—finance will help you get there.</p>
+      <a class="btn btn-green magnetic" href="contact.html">Contact Us</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <img src="assets/logo-large.png" class="footer-logo" alt="">
+        <small>© <span id="year"></span> CFO Advisory & Accountancy</small>
+      </div>
+      <ul class="footer-links">
+        <li><a href="services.html">Services</a></li><li><a href="why-cfo.html">Why CFO</a></li><li><a href="team.html">Team</a></li>
+      </ul>
+      <div class="socials">
+        <a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="Instagram">ig</a>
+      </div>
+    </div>
+  </footer>
+  <script src="temp/main.js"></script>
+</body>
+</html>
