@@ -13,8 +13,8 @@
   <header class="site-header"><div class="container header-row">
     <a class="brand" href="home.html"><img src="assets/logo-large.png" class="logo" alt=""></a>
     <nav class="nav"><a href="home.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="why-cfo.html">Why CFO</a><a href="team.html">Team</a><a href="contact.html">Contact</a></nav>
-    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button></div></header>
-  <aside class="drawer" id="drawer"><nav class="drawer-nav">
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span><span></span><span></span></button></div></header>
+  <aside class="drawer" id="drawer" aria-hidden="true"><nav class="drawer-nav" aria-label="Mobile">
     <a href="home.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="why-cfo.html">Why CFO</a><a href="team.html">Team</a><a href="contact.html">Contact</a>
   </nav></aside>
 
@@ -36,44 +36,44 @@
         </p>
     </div>
   </section>
-  <section class="why">
+  <section class="why why--lines">
     <div class="container">
         <h2 class="section-title">Why SMEs Choose Us</h2>
         <p class="center lead">We solve the finance problems that slow SMEs down.</p>
 
         <div class="cloud">
         <article class="bubble b-md tilt reveal">
-            <div class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
+            <div class="bic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h18"/><path d="M7 16V8"/><path d="M12 16V4"/><path d="M17 16v-6"/></svg></div>
             <h4>Inaccurate or Delayed Reports</h4>
             <p>Business owners often operate with outdated or incomplete financial data, leading to poor decision-making and missed opportunities.</p>
         </article>
 
         <article class="bubble b-md tilt reveal">
-            <div class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12l7-7 11 11"/></svg></div>
+            <div class="bic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M9 15l6-6M9 9h6v6"/></svg></div>
             <h4>No Clear Financial Direction</h4>
             <p>Many SMEs lack budgeting, forecasting, or performance tracking tools, making it hard to plan or measure success. </p>
         </article>
 
         <article class="bubble b-md tilt reveal">
-            <div class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 12h16M12 4v16"/></svg></div>
+            <div class="bic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M6 7v10"/><path d="M4 15l2 2 2-2"/><path d="M18 17V7"/><path d="M16 9l2-2 2 2"/></svg></div>
             <h4>Cash Flow Uncertainty</h4>
             <p>Without proper monitoring or projections, businesses frequently face unexpected cash shortages or struggle to manage working capital. </p>
         </article>
 
         <article class="bubble b-md tilt reveal">
-            <div class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <div class="bic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="12" height="16" rx="2"/><path d="M7 9h6M7 13h6M7 17h4"/><circle cx="19" cy="16" r="4"/><path d="M19 14v2l1 1"/></svg></div>
             <h4>Inefficient, Manual Work</h4>
             <p>Manual bookkeeping, paper-based approvals, and scattered systems waste time, increase errors, and slow down operations. </p>
         </article>
 
         <article class="bubble b-md tilt reveal">
-            <div class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3l7 4v5c0 5-3.5 9-7 10-3.5-1-7-5-7-10V7l7-4z"/></svg></div>
+            <div class="bic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3"/><path d="M12 21v-9M12 8V3"/><path d="M20 21v-5M20 12V3"/><circle cx="4" cy="10" r="2"/><circle cx="12" cy="8" r="2"/><circle cx="20" cy="12" r="2"/></svg></div>
             <h4>Difficulty Choosing or Using Accounting Tools</h4>
             <p>SMEs are overwhelmed by ERP and accounting software options and often lack the expertise to implement or use them effectively. </p>
         </article>
 
         <article class="bubble b-md tilt reveal">
-            <div class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19l-7-7 7-7 7 7-7 7z"/></svg></div>
+            <div class="bic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l9 4-9 4-9-4 9-4z"/><path d="M12 13v5"/><path d="M7 15c3 1.5 7 1.5 10 0"/></svg></div>
             <h4>Lack of Internal Financial Expertise</h4>
             <p>Hiring a full-time CFO is costly, yet without one, business owners feel unsupported in high-stakes financial decisions. </p>
         </article>
