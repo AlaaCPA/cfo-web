@@ -14,7 +14,13 @@
   <!-- Header -->
   <header class="site-header">
     <div class="container header-row">
-      <a class="brand" href="home.html"><img src="assets/logo-large.avif" class="logo" alt="CFO Advisory & Accountancy"></a>
+      <!-- <a class="brand" href="home.html"><img src="assets/logo-large.avif" class="logo" alt="CFO Advisory & Accountancy"></a>-->
+      <a class="brand" href="home.html" aria-label="CFO Advisory & Accountancy">
+        <picture>
+          <source srcset="assets/logo-large.avif" type="image/avif">
+          <img src="assets/logo-large.png" class="logo" alt="CFO Advisory & Accountancy">
+        </picture>
+      </a>
       <nav class="nav">
         <a href="home.html">Home</a>
         <a href="about.html">About</a>
@@ -23,11 +29,13 @@
         <a href="team.html">Team</a>
         <a href="contact.html">Contact</a>
       </nav>
-      <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </header>
-  <aside class="drawer" id="drawer">
-    <nav class="drawer-nav">
+  
+
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <nav class="drawer-nav" aria-label="Mobile">
       <a href="home.html">Home</a>
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
@@ -82,7 +90,7 @@
         <a class="btn btn-green magnetic" href="contact.html">Contact Us</a>
         </div>
 
-        <div class="scroll" aria-hidden="true">Scroll</div>
+        <div class="scroll" href="#what" aria-label="Scroll to What we do">Scroll</div>
     </div>
   </section>
 
@@ -165,19 +173,19 @@
     <div class="strip">
         <!-- Duplicate the five items twice to create a seamless loop -->
         <button class="face" data-bio="bio-ahmed">
-        <img src="assets/team/ahmed.jpg" alt="Ahmed Moussa">
+        <img loading="lazy" src="assets/team/ahmed.jpg" alt="Ahmed Moussa">
         <span>Ahmed Moussa</span>
         </button>
         <button class="face" data-bio="bio-hawraa">
-        <img src="assets/team/hawraa.jpg" alt="Hawraa Ali">
+        <img loading="lazy" src="assets/team/hawraa.jpg" alt="Hawraa Ali">
         <span>Hawraa Ali</span>
         </button>
         <button class="face" data-bio="bio-sana">
-        <img src="assets/team/sana.jpg" alt="Sana Shaikh">
+        <img loading="lazy" src="assets/team/sana.jpg" alt="Sana Shaikh">
         <span>Sana Shaikh</span>
         </button>
         <button class="face" data-bio="bio-suhail">
-        <img src="assets/team/suhail.jpg" alt="Mohamed Suhail">
+        <img loading="lazy" src="assets/team/suhail.jpg" alt="Mohamed Suhail">
         <span>Mohamed Suhail</span>
         </button>
 
