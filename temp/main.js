@@ -2,27 +2,38 @@
 const hamburger = document.getElementById('hamburger');
 const drawer = document.getElementById('drawer');
 if (hamburger && drawer){
-  hamburger.addEventListener('click', ()=> drawer.classList.toggle('open'));
-  drawer.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> drawer.classList.remove('open')));
+  /*hamburger.addEventListener('click', ()=> drawer.classList.toggle('open'));
+  drawer.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> drawer.classList.remove('open')));*/
+  const toggle = () => {
+    const open = !drawer.classList.contains('open');
+    drawer.classList.toggle('open', open);
+    drawer.setAttribute('aria-hidden', String(!open));
+    hamburger.setAttribute('aria-expanded', String(open));
+  };
+  hamburger.addEventListener('click', toggle);
+  drawer.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=>{
+    drawer.classList.remove('open');
+    drawer.setAttribute('aria-hidden','true');
+    hamburger.setAttribute('aria-expanded','false');
+  }));
 }
 
 /* Active nav link */
 (function markActive(){
-  const path = location.pathname.split('/').pop() || 'index.html';
+  const path = (location.pathname.split('/').pop() || 'home.html').toLowerCase();
   document.querySelectorAll('.nav a, .drawer-nav a').forEach(a=>{
-    const href = a.getAttribute('href');
-    if ((href === './' || href === '#') && path === 'index.html') a.classList.add('active');
-    else if (href && href.endsWith(path)) a.classList.add('active');
+    const href = (a.getAttribute('href') || '').toLowerCase();
+    if (href.endsWith(path)) a.classList.add('active');
   });
 })();
 
 /* Pause hero video when tab hidden */
-const hv = document.querySelector('.hero video');
+const hero = document.querySelector('.hero');
+const hv = document.querySelector('.hero video, .hero-video');
 if (hv){
-  document.addEventListener('visibilitychange', ()=>{
-    if (document.hidden) hv.pause();
-    else hv.play().catch(()=>{});
-  });
+  document.addEventListener('visibilitychange', ()=> document.hidden ? hv.pause() : hv.play().catch(()=>{}));
+  const io = new IntersectionObserver(([e]) => e.isIntersecting ? hv.play().catch(()=>{}) : hv.pause(), { threshold: .25 });
+  hero && io.observe(hero);
 }
 
 /* Reveal on scroll (+ stagger) */
@@ -95,7 +106,8 @@ const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const same = url.origin === location.origin;
     const file = url.pathname.split('/').pop();
     const isHash = url.hash && url.pathname === location.pathname;
-    if (same && !isHash && !a.target && !a.hasAttribute('download')){
+    const isExt = /^mailto:|^tel:/.test(a.getAttribute('href'));
+    if (same && !isHash && !a.target && !a.hasAttribute('download') && !isExt){
       e.preventDefault();
       curtain.classList.remove('leave');
       curtain.classList.add('active');
@@ -140,7 +152,7 @@ const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, 1.2, 0, Math.PI*2);
-      ctx.fillStyle = 'rgba(255,255,255,.9)';
+      ctx.fillStyle = 'rgba(255,255,255,0.9)';
       ctx.fill();
     }
     // lines
@@ -149,7 +161,7 @@ const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const a=pts[i], b=pts[j];
         const dx=a.x-b.x, dy=a.y-b.y, d=dx*dx+dy*dy;
         if (d < 120*120){
-          ctx.strokeStyle = 'rgba(198,240,225,.25)';
+          ctx.strokeStyle = 'rgba(198,240,225,0.25)';
           ctx.lineWidth = 1;
           ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
         }
@@ -251,6 +263,7 @@ const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function reflectUI(){
     btn.classList.toggle('on', !video.muted);
+    btn.setAttribute('aria-pressed', String(!video.muted));
     btn.setAttribute('aria-label', video.muted ? 'Unmute video' : 'Mute video');
     btn.textContent = video.muted ? '🔈' : '🔊';
   }
@@ -614,4 +627,105 @@ const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   window.addEventListener('resize', render);
 
   render();
+})();
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    /*if (!id) return;*/
+    const el = document.getElementById(id);
+    if (el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+  });
+});
+/* 3D tilt that respects reduced motion */
+(function tiltCards(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const max = 9;
+  document.querySelectorAll('.what .card.tilt').forEach(el=>{
+    el.addEventListener('pointermove', e=>{
+      const b = el.getBoundingClientRect();
+      const px = (e.clientX - b.left)/b.width;
+      const py = (e.clientY - b.top)/b.height;
+      el.style.transform = `rotateX(${(py-.5)*-2*max}deg) rotateY(${(px-.5)*2*max}deg)`;
+    });
+    el.addEventListener('pointerleave', ()=>{ el.style.transform=''; });
+  });
+})();
+/* Team strip: ensure seamless loop and give click a purpose on Home */
+(function teamStripMarquee(){
+  const strip = document.querySelector('.team-strip .strip');
+  if (!strip) return;
+
+  // 1) Make sure content is at least ~2x viewport width for seamless loop
+  const gap = parseFloat(getComputedStyle(strip).columnGap || getComputedStyle(strip).gap) || 18;
+  const totalWidth = () => Array.from(strip.children)
+    .reduce((w,el)=> w + el.getBoundingClientRect().width, 0) + (strip.children.length-1)*gap;
+
+  let w = totalWidth();
+  const vis = strip.getBoundingClientRect().width;
+  const kids = Array.from(strip.children);
+  while (w < vis * 2.2) { kids.forEach(n => strip.appendChild(n.cloneNode(true))); w = totalWidth(); }
+
+  // 2) Pause animation on hover is already in CSS; make sure it's smooth on resize
+  let raf; const sync = () => { cancelAnimationFrame(raf); strip.style.animation = 'none';
+    raf = requestAnimationFrame(()=> { strip.style.animation = ''; }); };
+  addEventListener('resize', sync);
+
+  // 3) On Home, clicking a face should take users to the Team page
+  if (!document.querySelector('.modal')) {
+    strip.querySelectorAll('[data-bio]').forEach(btn=>{
+      btn.addEventListener('click', ()=> location.href = 'team.html');
+    });
+  }
+})();
+/* Team avatars: swap to photo when data-img is available */
+(function teamAvatars(){
+  document.querySelectorAll('.avatar[data-img]').forEach(el=>{
+    const url = el.dataset.img;
+    if (!url) return;
+    el.style.setProperty('--photo', `url("${url}")`);
+    el.classList.add('has-photo');
+  });
+})();
+// Contact form handler
+// Contact form handler with optional endpoint + mailto fallback
+(() => {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+  const msg = form.querySelector('.form-msg');
+  const btn = document.getElementById('sendBtn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    // honeypot
+    if (form.website && form.website.value.trim()) return;
+
+    btn.disabled = true; btn.textContent = 'Sending…';
+    const ENDPOINT = ''; // e.g. '/api/contact' later
+
+    try {
+      let ok = true;
+      if (ENDPOINT) {
+        const res = await fetch(ENDPOINT, { method: 'POST', body: new FormData(form) });
+        ok = res.ok;
+      } else {
+        // mailto fallback if no backend yet
+        const name = encodeURIComponent(form.name.value || '');
+        const email = encodeURIComponent(form.email.value || '');
+        const phone = encodeURIComponent(form.phone.value || '');
+        const company = encodeURIComponent(form.organization.value || '');
+        const body = encodeURIComponent(
+          `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nCompany: ${company}\n\n${form.message.value || ''}`
+        );
+        window.location.href = `mailto:a.amer@cfoai.cpa?subject=Website inquiry — ${name}&body=${body}`;
+      }
+      msg.hidden = false;
+      msg.textContent = 'Thanks! We’ll be in touch shortly.';
+      form.reset();
+    } catch {
+      msg.hidden = false;
+      msg.textContent = 'Network error. Please try again.';
+    } finally {
+      btn.disabled = false; btn.textContent = 'Send Message';
+    }
+  });
 })();
