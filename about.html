@@ -13,8 +13,8 @@
   <header class="site-header"><div class="container header-row">
     <a class="brand" href="home.html"><img src="assets/logo-large.png" class="logo" alt=""></a>
     <nav class="nav"><a href="home.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="why-cfo.html">Why CFO</a><a href="team.html">Team</a><a href="contact.html">Contact</a></nav>
-    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button></div></header>
-  <aside class="drawer" id="drawer"><nav class="drawer-nav">
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span><span></span><span></span></button></div></header>
+  <aside class="drawer" id="drawer" aria-hidden="true"><nav class="drawer-nav" aria-label="Mobile">
     <a href="home.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="why-cfo.html">Why CFO</a><a href="team.html">Team</a><a href="contact.html">Contact</a>
   </nav></aside>
 
@@ -30,13 +30,13 @@
   <section class="about">
     <div class="container narrow">
       <p class="lead reveal">We help SMEs streamline financial operations and make data-driven decisions. Our services bring structure, visibility, and automation to every stage of the finance function. By integrating AI-powered tools and advanced ERP systems, we enable faster scaling with confidence.</p>
-      <div class="grid-5" style="grid-template-columns:repeat(2,1fr);gap:18px;margin-top:18px">
-        <article class="card reveal">
+      <div class="grid-5 grid-2" style="grid-template-columns:repeat(2,1fr);gap:18px;margin-top:18px">
+        <article class="card reveal tilt">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 7-7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14 7h7v7" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
           <h3>Vision</h3>
           <p>To be Qatar’s leading provider of CFO services—revolutionizing financial management for SMEs through strategic insight and automation.</p>
         </article>
-        <article class="card reveal">
+        <article class="card reveal tilt">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
           <h3>Mission</h3>
           <p>To transform traditional accounting through automation and expert CFO guidance, enabling SMEs to move faster, scale smarter, and operate with confidence.</p>
