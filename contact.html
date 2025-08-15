@@ -18,16 +18,36 @@
 </head>
 <body>
   <!-- Header -->
-  <header class="site-header"><div class="container header-row">
-    <a class="brand" href="home.html"><img src="assets/logo-large.png" class="logo" alt=""></a>
-    <nav class="nav"><a href="home.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="why-cfo.html">Why CFO</a><a href="team.html">Team</a><a href="contact.html">Contact</a></nav>
-    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button></div></header>
-  <aside class="drawer" id="drawer"><nav class="drawer-nav">
-    <a href="home.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="why-cfo.html">Why CFO</a><a href="team.html">Team</a><a href="contact.html">Contact</a>
-  </nav></aside>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-row">
+      <!-- Replace PNG-only logo with AVIF+PNG picture -->
+      <a class="brand" href="home.html" aria-label="CFO Advisory & Accountancy">
+        <picture>
+          <source srcset="assets/logo-large.avif" type="image/avif">
+          <img src="assets/logo-large.png" class="logo" alt="CFO Advisory & Accountancy">
+        </picture>
+      </a>
+
+      <nav class="nav">
+        <a href="home.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+        <a href="why-cfo.html">Why CFO</a><a href="team.html">Team</a><a href="contact.html">Contact</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <nav class="drawer-nav" aria-label="Mobile">
+      <a href="home.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+      <a href="why-cfo.html">Why CFO</a><a href="team.html">Team</a><a href="contact.html">Contact</a>
+    </nav>
+  </aside>
 
   <!-- Cover -->
-  <section class="hero" style="height:44vh;min-height:340px">
+  <section class="hero hero--sm"> <!-- use class instead of inline height -->
     <div class="overlay"></div><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
     <div class="content container">
       <h1 class="headline type"><span>Contact Us</span></h1>
@@ -37,24 +57,61 @@
 
   <section class="contact">
     <div class="container">
-      <form class="grid reveal" onsubmit="event.preventDefault(); alert('Thanks! We will be in touch.');">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Email" required>
-        <input type="tel" placeholder="Phone">
-        <input type="text" placeholder="Company">
-        <textarea placeholder="Message"></textarea>
-        <div><button class="btn btn-green" type="submit">Send Message</button></div>
+      <!-- your existing form is good; keep structure -->
+      <form class="grid reveal" id="contactForm" method="post" action="" novalidate> 
+        <div class="field"> <label for="name">Your Name</label> 
+          <input id="name" name="name" type="text" autocomplete="name" required> 
+        </div> 
+        <div class="field"> <label for="email">Email</label> 
+          <input id="email" name="email" type="email" autocomplete="email" required inputmode="email"> 
+        </div> 
+        <div class="field"> <label for="phone">Phone</label> 
+          <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel"> 
+        </div> 
+        <div class="field"> <label for="company">Company</label> 
+          <input id="company" name="organization" type="text" autocomplete="organization"> 
+        </div> <!-- Honeypot (anti-spam) --> 
+        <div class="hp" aria-hidden="true"> <label for="website">Leave this empty</label> 
+          <input id="website" name="website" type="text" tabindex="-1" autocomplete="off"> 
+        </div> <div class="field field--full"> <label for="message">Message</label> 
+          <textarea id="message" name="message" rows="6" required></textarea> 
+        </div> 
+        
+        <div class="field field--full"> 
+          <button class="btn btn-green" type="submit" id="sendBtn">Send Message</button> <p class="form-msg" role="status" aria-live="polite" hidden></p> 
+        </div> 
       </form>
-      <div class="map reveal">Map / office photo here</div>
-      <div class="center" style="margin-top:10px;color:#5e6678">Telephone/WhatsApp: +974-66447700 · Email: services@cfoconsulting.cpa · Doha, Qatar</div>
+
+      <!-- Map embed (replace about:blank) -->
+      <div class="map reveal">
+        <iframe
+          title="CFO Advisory & Accountancy — Doha"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Doha%20Qatar&output=embed">
+        </iframe>
+      </div>
+
+      <!-- Make tel/wa/email tappable; unify email -->
+      <p class="center contact-lines" style="margin-top:10px">
+        <a href="tel:+97466447700">+974-6644-7700</a> ·
+        <a href="https://wa.me/97466447700">WhatsApp</a> ·
+        <a href="mailto:services@cfoai.cpa">services@cfoai.cpa</a> · Doha, Qatar
+      </p>
     </div>
   </section>
 
-  <footer class="site-footer"><div class="container footer-grid">
-    <div><img src="assets/logo-large.png" class="footer-logo" alt=""><small>© <span id="year"></span> CFO Advisory & Accountancy</small></div>
-    <ul class="footer-links"><li><a href="services.html">Services</a></li><li><a href="why-cfo.html">Why CFO</a></li><li><a href="team.html">Team</a></li></ul>
-    <div class="socials"><a href="#">in</a><a href="#">f</a><a href="#">ig</a></div>
-  </div></footer>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <img src="assets/logo-large.png" class="footer-logo" alt="">
+        <small>© <span id="year"></span> CFO Advisory & Accountancy</small>
+      </div>
+      <ul class="footer-links"><li><a href="services.html">Services</a></li><li><a href="why-cfo.html">Why CFO</a></li><li><a href="team.html">Team</a></li></ul>
+      <div class="socials"><a href="#">in</a><a href="#">f</a><a href="#">ig</a></div>
+    </div>
+  </footer>
+
   <script src="temp/main.js"></script>
 </body>
 </html>
