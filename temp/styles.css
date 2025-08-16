@@ -1180,9 +1180,10 @@ body.nav-open { position: fixed; width: 100%; overflow: hidden; }
   @keyframes peekIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
 }
 
-@media (max-width: 800px){
+
   /* containers become horizontal decks */
   /*
+@media (max-width: 800px){
   .why .cloud, .what .grid-5{
     display:flex; overflow-x:auto; gap:14px; padding-inline:12px;
     scroll-snap-type:x mandatory;
@@ -1201,4 +1202,5 @@ body.nav-open { position: fixed; width: 100%; overflow: hidden; }
   .snap-dots button.on{ background:#2fb381; opacity:1; }
 }
 */
+
 
