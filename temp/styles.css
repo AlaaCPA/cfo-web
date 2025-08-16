@@ -1142,3 +1142,8 @@ body.nav-open { position: fixed; width: 100%; overflow: hidden; }
 
 /* Stop page scrolling behind open modal/drawer */
 body.nav-open { position: fixed; width: 100%; overflow: hidden; }
+
+.site-header.scrolled{
+  background: rgba(15,27,61,.96);
+  box-shadow: 0 6px 18px rgba(0,0,0,.18);
+}
