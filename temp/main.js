@@ -748,3 +748,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 if (window.matchMedia('(pointer: coarse)').matches) {
   document.documentElement.classList.add('is-touch');
 }
+
+const header = document.querySelector('.site-header');
+if (header) {
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 10);
+  onScroll(); addEventListener('scroll', onScroll, { passive: true });
+}
