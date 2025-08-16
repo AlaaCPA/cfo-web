@@ -1091,3 +1091,30 @@ svg.draw *{
 
 /* small hero size utility (in case it isn't already) */
 .hero--sm{ height:44vh; min-height:340px; }
+
+/* === MOBILE FIX PACK (place at end of styles.css) === */
+
+/* 1) Stable hero height on mobile (use dvh, fall back to vh) */
+.hero, .hero--bottom, .hero--sm {
+  min-height: clamp(420px, 90dvh, 980px);
+}
+@supports not (height: 100dvh) {
+  .hero, .hero--bottom, .hero--sm {
+    min-height: clamp(420px, 90vh, 980px);
+  }
+}
+
+/* 2) One source of truth for the WHY grid on small screens */
+.why .cloud { display:grid; gap:16px; grid-template-columns:1fr; }
+
+/* 3) Prevent tiny horizontal jiggles */
+.card, .bubble, .tcard { contain: layout paint; }
+
+/* 4) Lock background scroll when the drawer is open */
+body.nav-open { position: fixed; width: 100%; overflow: hidden; }
+.drawer.open { overscroll-behavior: contain; }
+
+/* 5) Touch-friendly inputs (iOS zoom prevention) */
+input[type="text"], input[type="email"], input[type="tel"], textarea {
+  font-size: 16px;
+}
