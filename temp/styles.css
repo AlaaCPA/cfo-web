@@ -1135,3 +1135,10 @@ input[type="text"], input[type="email"], input[type="tel"], textarea {
 
 /* Stop page scrolling behind open modal/drawer */
 body.nav-open { position: fixed; width: 100%; overflow: hidden; }
+
+/* Stable hero height on mobile */
+.hero, .hero--bottom, .hero--sm { min-height: clamp(420px, 90dvh, 980px); }
+@supports not (height: 100dvh) { .hero, .hero--bottom, .hero--sm { min-height: clamp(420px, 90vh, 980px); } }
+
+/* Stop page scrolling behind open modal/drawer */
+body.nav-open { position: fixed; width: 100%; overflow: hidden; }
