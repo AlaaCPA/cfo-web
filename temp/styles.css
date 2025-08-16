@@ -1147,3 +1147,11 @@ body.nav-open { position: fixed; width: 100%; overflow: hidden; }
   background: rgba(15,27,61,.96);
   box-shadow: 0 6px 18px rgba(0,0,0,.18);
 }
+
+.btn-green::after{
+  content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+  background: radial-gradient(80px 40px at var(--mx,20%) 0%, rgba(255,255,255,.25), transparent 46%);
+  opacity:0; transition:opacity .25s ease;
+}
+.btn-green:hover::after{ opacity:1; }
+.btn-green{ position:relative; overflow:hidden }
