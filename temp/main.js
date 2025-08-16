@@ -787,3 +787,37 @@ if (header) {
     });
   });
 })();
+
+// Make a container a snap deck with dots on mobile
+function makeSnapDeck(containerSel, itemSel){
+  const cont = document.querySelector(containerSel);
+  if (!cont || !matchMedia('(max-width: 800px)').matches) return;
+  const items = Array.from(cont.querySelectorAll(itemSel));
+  if (!items.length) return;
+
+  const dots = document.createElement('div');
+  dots.className = 'snap-dots';
+  items.forEach((_, i) => {
+    const b = document.createElement('button');
+    if (i === 0) b.classList.add('on');
+    b.addEventListener('click', () => {
+      const x = items[i].offsetLeft - cont.offsetLeft - 12;
+      cont.scrollTo({ left: x, behavior: 'smooth' });
+    });
+    dots.appendChild(b);
+  });
+  cont.after(dots);
+
+  // Observe which card is centered
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if (e.isIntersecting){
+        const idx = items.indexOf(e.target);
+        dots.querySelectorAll('button').forEach((d, j)=> d.classList.toggle('on', j===idx));
+      }
+    });
+  }, { root: cont, threshold: 0.6 });
+  items.forEach(el=> io.observe(el));
+}
+makeSnapDeck('.why .cloud', '.bubble');
+makeSnapDeck('.what .grid-5', '.card');
