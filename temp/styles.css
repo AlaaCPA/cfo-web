@@ -1118,3 +1118,20 @@ body.nav-open { position: fixed; width: 100%; overflow: hidden; }
 input[type="text"], input[type="email"], input[type="tel"], textarea {
   font-size: 16px;
 }
+
+/* === Reveal parity on all devices === */
+/* Anything that used to depend on .revealed or .reveal.on will now work with either */
+.bubble.reveal.on, .bubble.revealed { opacity: 1; transform: none; }
+.tcard.reveal.on,  .tcard.revealed  { opacity: 1; transform: none; }
+/* Touch-friendly interactions */
+.is-touch .tcard:hover,
+.is-touch .bubble:hover { transform: none; } /* ignore :hover on touch */
+
+.is-touch .tcard:active { transform: translateY(-2px) scale(1.01); }
+.is-touch .bubble:active { transform: translateY(-1px); }
+/* Stable hero height on mobile */
+.hero, .hero--bottom, .hero--sm { min-height: clamp(420px, 90dvh, 980px); }
+@supports not (height: 100dvh) { .hero, .hero--bottom, .hero--sm { min-height: clamp(420px, 90vh, 980px); } }
+
+/* Stop page scrolling behind open modal/drawer */
+body.nav-open { position: fixed; width: 100%; overflow: hidden; }
