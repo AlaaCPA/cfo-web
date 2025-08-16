@@ -789,6 +789,7 @@ if (header) {
 })();
 
 // Make a container a snap deck with dots on mobile
+/*
 function makeSnapDeck(containerSel, itemSel){
   const cont = document.querySelector(containerSel);
   if (!cont || !matchMedia('(max-width: 800px)').matches) return;
@@ -821,3 +822,4 @@ function makeSnapDeck(containerSel, itemSel){
 }
 makeSnapDeck('.why .cloud', '.bubble');
 makeSnapDeck('.what .grid-5', '.card');
+*/
