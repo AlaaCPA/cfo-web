@@ -767,3 +767,23 @@ if (header) {
   };
   tick(); addEventListener('scroll', tick, {passive:true}); addEventListener('resize', tick);
 })();
+
+// Team quick peek on mobile (desktop keeps the modal)
+(() => {
+  if (!matchMedia('(max-width: 800px)').matches) return;
+  document.querySelectorAll('.tcard').forEach(card=>{
+    const btn = card.querySelector('.more');
+    const bioId = btn?.dataset.bio || card.querySelector('[data-bio]')?.dataset.bio;
+    const tpl = bioId && document.getElementById(bioId);
+    if (!btn || !tpl) return;
+    const peek = document.createElement('div');
+    peek.className = 'peek'; peek.hidden = true;
+    peek.innerHTML = tpl.innerHTML;
+    card.appendChild(peek);
+    btn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      peek.hidden = !peek.hidden;
+      card.classList.toggle('peek-open', !peek.hidden);
+    });
+  });
+})();
