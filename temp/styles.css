@@ -1179,3 +1179,23 @@ body.nav-open { position: fixed; width: 100%; overflow: hidden; }
     animation:peekIn .28s ease both; }
   @keyframes peekIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
 }
+
+@media (max-width: 800px){
+  /* containers become horizontal decks */
+  .why .cloud, .what .grid-5{
+    display:flex; overflow-x:auto; gap:14px; padding-inline:12px;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .why .cloud > *, .what .grid-5 > *{
+    flex:0 0 86%; scroll-snap-align:start;
+  }
+  /* hide scrollbars for a clean look */
+  .why .cloud::-webkit-scrollbar, .what .grid-5::-webkit-scrollbar{ display:none; }
+  /* dots */
+  .snap-dots{ display:flex; gap:6px; justify-content:center; margin:10px 0 2px; }
+  .snap-dots button{
+    width:7px; height:7px; border-radius:999px; border:none; background:#cfd7e6; opacity:.7;
+  }
+  .snap-dots button.on{ background:#2fb381; opacity:1; }
+}
