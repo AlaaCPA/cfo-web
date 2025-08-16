@@ -754,3 +754,16 @@ if (header) {
   const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 10);
   onScroll(); addEventListener('scroll', onScroll, { passive: true });
 }
+
+// scroll progress
+(() => {
+  const bar = document.querySelector('.scroll-progress');
+  if (!bar) return;
+  const tick = () => {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    const pct = max > 0 ? (h.scrollTop || window.scrollY) / max : 0;
+    bar.style.width = (pct * 100) + '%';
+  };
+  tick(); addEventListener('scroll', tick, {passive:true}); addEventListener('resize', tick);
+})();
