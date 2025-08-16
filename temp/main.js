@@ -44,7 +44,7 @@ const io = new IntersectionObserver((entries)=>{
       io.unobserve(e.target);
     }
   });
-},{threshold:.12});
+},{threshold:0.06, rootMargin: '0px 0px -10% 0px'});
 document.querySelectorAll('.reveal, .card, .bubble, .tcard').forEach((el,i)=>{
   el.style.transitionDelay = `${(i%6)*60}ms`;
   io.observe(el);
@@ -59,7 +59,7 @@ document.querySelectorAll('.acc details').forEach(d=>{
   });
 });
 
-/* Team bios modal (Team page) */
+/* Team bios modal (Team page) 
 const modal = document.querySelector('.modal');
 if (modal){
   const modalBody = modal.querySelector('.modal-body');
@@ -75,6 +75,58 @@ if (modal){
     }
   });
 }
+*/
+/* Team bios modal — single source of truth */
+(function teamBios(){
+  const modal = document.getElementById('teamModal');
+  if (!modal) return;
+
+  const body  = modal.querySelector('.modal-body');
+  const close = modal.querySelector('.modal-close');
+  const prevB = modal.querySelector('.modal-prev');
+  const nextB = modal.querySelector('.modal-next');
+
+  const triggers = Array.from(document.querySelectorAll('[data-bio]'));
+  let index = -1, lastFocus = null;
+
+  function render(idx){
+    const id = triggers[idx]?.dataset.bio;
+    const tpl = id && document.getElementById(id);
+    if (!tpl) return;
+    body.innerHTML = tpl.innerHTML;
+    modal.classList.add('open');
+    document.body.classList.add('nav-open'); // lock background scroll (re-uses your class)
+    index = idx;
+    lastFocus = document.activeElement;
+    modal.querySelector('.modal-close')?.focus();
+  }
+
+  function closeModal(){
+    modal.classList.remove('open');
+    document.body.classList.remove('nav-open');
+    index = -1;
+    lastFocus?.focus();
+  }
+
+  triggers.forEach((btn, i)=> btn.addEventListener('click', ()=> render(i)));
+
+  // Click outside / close
+  modal.addEventListener('click', (e)=>{
+    if (e.target === modal || e.target.classList.contains('modal-close')) closeModal();
+  });
+
+  // Next/prev
+  nextB?.addEventListener('click', ()=> render((index+1) % triggers.length));
+  prevB?.addEventListener('click', ()=> render((index-1+triggers.length) % triggers.length));
+
+  // Keyboard (Esc/Left/Right, trap basic)
+  document.addEventListener('keydown', (e)=>{
+    if (!modal.classList.contains('open')) return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowRight') nextB?.click();
+    if (e.key === 'ArrowLeft')  prevB?.click();
+  });
+})();
 
 /* Page enter animation */
 window.addEventListener('DOMContentLoaded', ()=>{
@@ -379,45 +431,7 @@ const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   root.addEventListener('touchstart',  start, {passive:true});
   root.addEventListener('touchend',    end);
 })();
-/* Team bios modal (Team page) — structured, with next/prev + arrows */
-(function teamBios(){
-  const modal = document.querySelector('.modal');
-  if (!modal) return;
-  const body  = modal.querySelector('.modal-body');
-  const close = modal.querySelector('.modal-close');
-  const prevB = modal.querySelector('.modal-prev');
-  const nextB = modal.querySelector('.modal-next');
 
-  const triggers = Array.from(document.querySelectorAll('[data-bio]'));
-  let index = -1;
-
-  function render(idx){
-    const id = triggers[idx]?.dataset.bio;
-    const tpl = id && document.getElementById(id);
-    if (!tpl) return;
-    body.innerHTML = tpl.innerHTML;
-    modal.classList.add('open');
-    index = idx;
-  }
-  triggers.forEach((btn, i)=> btn.addEventListener('click', ()=> render(i)));
-
-  function closeModal(){ modal.classList.remove('open'); index = -1; }
-  modal.addEventListener('click', (e)=>{
-    if (e.target === modal || e.target.classList.contains('modal-close')) closeModal();
-  });
-
-  // next/prev buttons
-  nextB?.addEventListener('click', ()=> render((index+1) % triggers.length));
-  prevB?.addEventListener('click', ()=> render((index-1+triggers.length) % triggers.length));
-
-  // keyboard nav
-  document.addEventListener('keydown', (e)=>{
-    if (!modal.classList.contains('open')) return;
-    if (e.key === 'Escape') closeModal();
-    if (e.key === 'ArrowRight') nextB?.click();
-    if (e.key === 'ArrowLeft')  prevB?.click();
-  });
-})();
 (function teamCoverSlider(){
   const root  = document.querySelector('.team-cover');
   if (!root) return;
@@ -729,3 +743,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 })();
+
+// Mark touch devices so CSS can give :active feedback
+if (window.matchMedia('(pointer: coarse)').matches) {
+  document.documentElement.classList.add('is-touch');
+}
